@@ -143,10 +143,15 @@ def find_motto(filename, villager_name):
     #         return motto
     #     elif villager_name not in names:
     #         return None
+
+    # [ (name, species, personality, hobby, motto ),
+    #   (name, species, personality, hobby, motto )
+    # ]
         
-    for name, _, _, _, motto in all_data(filename):
-        if name == villager_name:
-            return motto
+    for data_line in all_data(filename):
+        # data_line = (name, species, personality, hobby, motto)
+        if data_line[0] == villager_name:
+            return data_line[4]
     
 # print(find_motto("villagers.csv", "Klaus"))
 
@@ -165,23 +170,20 @@ def find_likeminded_villagers(filename, villager_name):
         >>> find_likeminded_villagers('villagers.csv', 'Wendy')
         {'Bella', ..., 'Carmen'}
     """
-    likeminded = set()
+# take a villager's name and find their personality
+# go through all the lines, and for each villager whose personality matches, add them to the set
+    villagers_with_personality = set() # set of all villagers with personality
 
-    target_personality = None
-    for villager_data in all_data(filename):
-        name, _, personality = villager_data[:3]
-
+    all_villagers = all_data(filename)
+    
+    for name, _, personality, _, _ in all_villagers:
         if name == villager_name:
-            target_personality = personality
-            break
-
-    if target_personality:
-        for villager_data in all_data(filename):
-            name, _, personality = villager_data[:3]
-            if personality == target_personality:
-                likeminded.add(name)
-
-    return likeminded
-
-# print(find_likeminded_villagers("villagers.csv", "Klaus"))
+            target_personality = personality # string, personality we're searching for
+        
+    for name, _, personality, _, _ in all_villagers:
+        if personality == target_personality:
+            villagers_with_personality.add(name)
+    
+    return villagers_with_personality
+print(find_likeminded_villagers("villagers.csv", "Klaus"))
   
