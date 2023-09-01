@@ -18,7 +18,7 @@ def all_species(filename):
         speciesnames = line.rstrip().split("|")[1]
         species.add(speciesnames)
 
-    # TODO: replace this with your code
+   
 
     return species
 #print(all_species("villagers.csv"))
@@ -36,7 +36,7 @@ def get_villagers_by_species(filename, search_string="All"):
 
     villagers = []
 
-    # TODO: replace this with your code
+   
     data = open(filename)
     for line in data: 
         names = line.split("|")[0]
@@ -63,7 +63,7 @@ def all_names_by_hobby(filename):
     Fashion = []
     Play = []
 
-    # TODO: replace this with your code
+    
     data = open(filename)
     for line in data:
         names = line.split("|")[0]
@@ -107,7 +107,7 @@ def all_data(filename):
 
     all_data = []
 
-    # TODO: replace this with your code
+   
     data = open(filename)
     for line in data:
         # names = line.split("|")[0]
@@ -147,8 +147,8 @@ def find_motto(filename, villager_name):
     for name, _, _, _, motto in all_data(filename):
         if name == villager_name:
             return motto
-    # TODO: replace this with your code
-print(find_motto("villagers.csv", "Klaus"))
+    
+# print(find_motto("villagers.csv", "Klaus"))
 
 
 def find_likeminded_villagers(filename, villager_name):
@@ -183,5 +183,5 @@ def find_likeminded_villagers(filename, villager_name):
 
     return likeminded
 
-print(find_likeminded_villagers("villagers.csv", "Klaus"))
-    # TODO: replace this with your code
+# print(find_likeminded_villagers("villagers.csv", "Klaus"))
+  
